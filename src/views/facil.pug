@@ -1,0 +1,15 @@
+doctype html
+html
+  head
+    link(rel='stylesheet' src='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css')
+  body
+    .container.mt-5
+	  h1 Tabla queries
+	  table.table
+	    thead
+		  each col in fields
+		    th= col.name
+		tbody
+		  each row in results
+		    tr
+			  each col in fields  td= row[col.name]

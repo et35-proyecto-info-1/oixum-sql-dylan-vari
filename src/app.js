@@ -1,14 +1,20 @@
 var express = require('express');
 var connection = require('./connection');
-var exphbs  = require('express-handlebars');
+
 var path = require('path');
 
 var app = express();
 
+app.use(express.static('public'));
+
 app.use(express.urlencoded({ extended: false }));
 app.set('views', path.join(__dirname, 'views'));
-app.engine('handlebars', exphbs());
-app.set('view engine', 'handlebars');
+
+app.set('view engine', 'pug');
+
+app.get('/facil', (req, res) => {
+	res.render('facil', { user: 'Dylan' });
+});
 
 app.get('/', function(req, res) {
   res.render('home');
@@ -17,11 +23,19 @@ app.get('/', function(req, res) {
 app.post('/', function(req, res) {
   const query = req.body.query;
   connection.query(query, function (error, results, fields) {
-    res.render('home', {
-      resultados: JSON.stringify(results),
-      columnas: JSON.stringify(fields),
-      error: error
-    });
+	if(error == null){
+		console.log(results);
+		res.render('result', {
+			resultados: JSON.stringify(results),
+			//columnas: JSON.stringify(fields),
+		});
+	}else{
+	res.render('error', {
+			error: error
+		});
+	}
+	var test = JSON.parse(resultados);
+	console.log(test);
   });
 });
 
