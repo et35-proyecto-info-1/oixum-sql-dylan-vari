@@ -12,30 +12,19 @@ app.set('views', path.join(__dirname, 'views'));
 
 app.set('view engine', 'pug');
 
-app.get('/facil', (req, res) => {
-	res.render('facil', { user: 'Dylan' });
-});
-
 app.get('/', function(req, res) {
   res.render('home');
 });
 
-app.post('/', function(req, res) {
+app.post('/', function(req, res){
   const query = req.body.query;
-  connection.query(query, function (error, results, fields) {
-	if(error == null){
-		console.log(results);
-		res.render('result', {
-			resultados: JSON.stringify(results),
-			//columnas: JSON.stringify(fields),
-		});
-	}else{
-	res.render('error', {
-			error: error
-		});
-	}
-	var test = JSON.parse(resultados);
-	console.log(test);
+  connection.query(query, function(error, results, fields){
+    res.render('output',{
+      results: results,
+      fields: fields,
+      error: error,
+      query: query
+    });
   });
 });
 

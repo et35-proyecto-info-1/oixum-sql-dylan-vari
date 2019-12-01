@@ -1,0 +1,24 @@
+doctype html
+html
+  head
+    link(rel="stylesheet", href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css")
+    title "Trini Aprobame" | SQL Results
+    body
+      if (error)
+        h2(align="center") ERROR
+        br
+        p #{error}
+
+      if (results)
+        h2(align="center") RESULTADOS
+        p(align="center") Si está viendo esto, no veo razón para no aprobarnos.
+        br
+        table(align="center")
+          thead
+            each col in fields
+              th=col.name
+          tbody
+            each row in results
+              tr
+                each col in fields
+                  td=row[col.name]

@@ -1,0 +1,10 @@
+doctype html
+html
+  head
+    link(rel="stylesheet", href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css")
+    title "Trini Aprobame" | SQL Query Interface
+  body
+    form.tabla(method='post' action='/' align='center')
+      textarea(name='query') #{query}
+      br
+      input(id='btn-1' type='submit' value='Consultar')

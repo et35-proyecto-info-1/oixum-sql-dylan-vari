@@ -8,8 +8,21 @@ CREATE TABLE IF NOT EXISTS test.estudiantes (
 );
 
 INSERT INTO test.estudiantes (nombre, comidaPreferida, fechaNacimiento)
-VALUES 
+VALUES
   ('Federico Aloi', 'Panqueques de arroz', '1991-10-30'),
   ('Andrea Sierra Bueno', 'Puré de papas con huevo revuelto', '1985-08-30'),
   ('Fernando Cazas', 'Hamburguesas de lentejas', '1963-02-12'),
   ('Marta Lucero', 'Conejo a la cacerola', '1938-01-24');
+
+	CREATE TABLE IF NOT EXISTS test.profesores (
+		id INT NOT NULL AUTO_INCREMENT,
+		nombre varchar(50) NOT NULL,
+		materia varchar(25) NULL,
+		alumnoFavorito varchar(20) NULL,
+		CONSTRAINT estudiantes_PK PRIMARY KEY (id)
+	);
+
+	INSERT INTO test.profesores (nombre, materia,alumnoFavorito)
+	VALUES
+	  ('Santiago Trini', 'P. Informatico',"Toscano"),
+	  ('Patricia Maguire','Lengua', 'Nadie. Jamas.');
